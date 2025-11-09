@@ -1,0 +1,66 @@
+.todo {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+
+  &:hover {
+    .todo-icons {
+      display: flex;
+      gap: 10px;
+    }
+  }
+}
+
+.todoText {
+  flex: 1;
+}
+
+.todo-icons {
+  display: none;
+
+  .editIcon {
+    cursor: pointer;
+
+    path {
+      transition: stroke .2s ease-in-out;
+    }
+
+    &:hover path {
+      stroke: var(--purple-color);
+    }
+  }
+
+  .trashIcon {
+    cursor: pointer;
+    
+    path {
+      transition: stroke .2s ease-in-out;
+    }
+
+    &:hover path {
+      stroke: #E50000;
+    }
+  }
+}
+
+.checkbox {
+  appearance: none;
+  width: 26px;
+  height: 26px;
+  outline: none;
+  border: 1px solid var(--purple-color);
+  border-radius: 2px;
+  cursor: pointer;
+
+  &:checked {
+    background-color: var(--purple-color);
+    background-image: url('/checkbox.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  &:active {
+    filter: brightness(90%);
+  }
+}
