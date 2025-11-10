@@ -1,0 +1,10 @@
+<ul class="todos-container">
+  @for (item of todos; track item.id) {
+  <li class="todo-item"><app-todo-item [todo]="item"></app-todo-item></li>
+  } @empty {
+  <li class="empty">
+    <img src="/empty.png" alt="">
+    <app-typography variant="h3" text="Empty"></app-typography>
+  </li>
+  }
+</ul>

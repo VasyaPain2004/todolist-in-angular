@@ -1,0 +1,22 @@
+.todos-container {
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.todo-item + .todo-item {
+  padding-top: 17px;
+  padding-bottom: 17px;
+  border-top: 1px solid var(--purple-color);
+}
+
+.todo-item:first-child {
+  padding-bottom: 17px;
+}
+
+.empty {
+  text-align: center;
+
+  img {
+    margin-bottom: 20px;
+  }
+}
