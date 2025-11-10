@@ -16,7 +16,7 @@ export class TodoList {
 
   constructor() {
     this.todoService.getTodos().subscribe((value) => {
-      this.todos = value
+      this.todos = value.splice(0, 10)
     })
   }
 }
