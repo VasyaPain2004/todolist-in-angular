@@ -1,10 +1,15 @@
 <div class="custom-select">
-  <select class="select-native" [(ngModel)]="selectedOption" (click)="toggleSelect()">
+  <select
+    class="select-native"
+    [value]="currentFilter()"
+    (change)="onSelectChange($event)"
+    (click)="toggleSelect()"
+  >
     <option value="all">All</option>
     <option value="complete">Complete</option>
     <option value="incomplete">Incomplete</option>
   </select>
   <div class="select-arrow" [class.rotated]="isOpen">
-    <app-chevron-top class="iconArrow" ></app-chevron-top>
+    <app-chevron-top class="iconArrow"></app-chevron-top>
   </div>
 </div>

@@ -2,9 +2,12 @@
   <app-typography text="TODO LIST" variant="h1" color="black"></app-typography>
   <div class="header">
     <app-input class="header-input" placeholder="Search note..."></app-input>
-    <app-select></app-select>
+    <app-select
+      [currentFilter]="currentFilter()"
+      (filterChange)="onFilterChange($event)"
+    ></app-select>
     <app-theme-switch></app-theme-switch>
   </div>
-  <app-todo-list></app-todo-list>
+  <app-todo-list [todos]="filteredTodos()" (todoUpdated)="onTodoUpdated($event)"></app-todo-list>
   <app-add-component></app-add-component>
 </div>

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { ChevronTop } from "../../icons/chevron-top/chevron-top";
 import { FormsModule } from '@angular/forms';
+import { selectType } from '../../types/select.types';
 
 @Component({
   selector: 'app-select',
@@ -9,9 +10,17 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './select.scss',
 })
 export class Select {
-  selectedOption: string = 'all';
   isOpen: boolean = false;
   private closeTimeout: any;
+
+  currentFilter = input<selectType>('all');
+  filterChange = output<selectType>();
+
+  onSelectChange(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement;
+    const filter = selectElement.value as selectType;
+    this.filterChange.emit(filter);
+  }
 
   toggleSelect(): void {
     this.isOpen = !this.isOpen;

@@ -1,0 +1,1 @@
+export type selectType = 'all' | 'complete' | 'incomplete'

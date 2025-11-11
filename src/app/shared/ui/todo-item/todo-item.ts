@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { ITodo } from '../../types/todo.types';
 import { Typography } from "../typography/typography";
 
@@ -9,5 +9,15 @@ import { Typography } from "../typography/typography";
   styleUrl: './todo-item.scss',
 })
 export class TodoItem {
-  @Input() todo!: ITodo
+  todo = input.required<ITodo>();
+  todoUpdated = output<ITodo>();
+
+  onToggleCompleted(): void {
+    const updatedTodo: ITodo = {
+      ...this.todo(),
+      completed: !this.todo().completed
+    };
+    
+    this.todoUpdated.emit(updatedTodo);
+  }
 }

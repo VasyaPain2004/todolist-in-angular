@@ -1,9 +1,11 @@
 <ul class="todos-container">
-  @for (item of todos; track item.id) {
-  <li class="todo-item"><app-todo-item [todo]="item"></app-todo-item></li>
+  @for (item of todos(); track item.id) {
+  <li class="todo-item">
+    <app-todo-item [todo]="item" (todoUpdated)="onTodoChange($event)"></app-todo-item>
+  </li>
   } @empty {
   <li class="empty">
-    <img src="/empty.png" alt="">
+    <img src="/empty.png" alt="" />
     <app-typography variant="h3" text="Empty"></app-typography>
   </li>
   }

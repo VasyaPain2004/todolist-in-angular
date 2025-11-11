@@ -1,8 +1,7 @@
-import { Component, inject } from '@angular/core';
-import { TodoService } from '../../../services/todo-service';
-import { ITodo } from '../../types/todo.types';
+import { Component, input, output } from '@angular/core';
 import { TodoItem } from "../todo-item/todo-item";
 import { Typography } from "../typography/typography";
+import { ITodo } from '../../types/todo.types';
 
 @Component({
   selector: 'app-todo-list',
@@ -11,12 +10,10 @@ import { Typography } from "../typography/typography";
   styleUrl: './todo-list.scss',
 })
 export class TodoList {
-  todoService = inject(TodoService)
-  todos: ITodo[] = []
+  todos = input.required<ITodo[]>()
+  todoUpdated = output<ITodo>();
 
-  constructor() {
-    this.todoService.getTodos().subscribe((value) => {
-      this.todos = value.splice(0, 10)
-    })
+  onTodoChange(updatedTodo: ITodo): void {
+    this.todoUpdated.emit(updatedTodo);
   }
 }

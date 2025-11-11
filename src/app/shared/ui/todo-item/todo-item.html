@@ -1,6 +1,11 @@
 <div class="todo">
-  <input type="checkbox" class="checkbox" [checked]="todo.completed" />
-  <app-typography [text]="todo.title" class="todoText"></app-typography>
+  <input
+    type="checkbox"
+    class="checkbox"
+    [checked]="todo().completed"
+    (change)="onToggleCompleted()"
+  />
+  <app-typography [text]="todo().title" class="todoText"></app-typography>
   <div class="todo-icons">
     <svg
       class="editIcon"
