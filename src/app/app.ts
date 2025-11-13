@@ -20,6 +20,7 @@ export class App {
   todoService = inject(TodoService)
   todos = signal<ITodo[]>([])
   currentFilter = signal<selectType>('all');
+  searchQuery = signal<string>('');
 
   constructor() {
     this.todoService.getTodos().subscribe((value) => {
@@ -30,20 +31,38 @@ export class App {
   filteredTodos = computed(() => {
     const allTodos = this.todos();
     const filter = this.currentFilter();
+    const query = this.searchQuery().toLowerCase().trim(); 
     
+    let filtered = allTodos;
+
     switch (filter) {
       case 'complete':
-        return allTodos.filter(todo => todo.completed);
+        filtered = filtered.filter(todo => todo.completed);
+        break;
       case 'incomplete':
-        return allTodos.filter(todo => !todo.completed);
+        filtered = filtered.filter(todo => !todo.completed);
+        break;
       case 'all':
       default:
-        return allTodos;
+        break;
     }
+
+    if (query) {
+      filtered = filtered.filter(todo => 
+        todo.title.toLowerCase().includes(query) || 
+        (todo.title && todo.title.toLowerCase().includes(query))
+      );
+    }
+
+    return filtered;
   });
 
   onFilterChange(filter: selectType): void {
     this.currentFilter.set(filter);
+  }
+
+  onSearchChange(query: string): void {
+    this.searchQuery.set(query);
   }
 
   onTodoUpdated(updatedTodo: ITodo): void {

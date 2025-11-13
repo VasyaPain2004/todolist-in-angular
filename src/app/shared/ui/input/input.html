@@ -1,5 +1,11 @@
 <div class="input-wrapper">
-  <input id="search" type="text" class="input" [placeholder]="placeholder" />
+  <input
+    id="search"
+    type="text"
+    class="input"
+    [placeholder]="placeholder"
+    (input)="onInputChange($event)"
+  />
   <label for="search">
     <app-search class="icon"></app-search>
   </label>

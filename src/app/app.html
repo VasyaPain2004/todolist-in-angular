@@ -1,7 +1,11 @@
 <div class="container">
   <app-typography text="TODO LIST" variant="h1" color="black"></app-typography>
   <div class="header">
-    <app-input class="header-input" placeholder="Search note..."></app-input>
+    <app-input
+      class="header-input"
+      placeholder="Search note..."
+      (searchChange)="onSearchChange($event)"
+    ></app-input>
     <app-select
       [currentFilter]="currentFilter()"
       (filterChange)="onFilterChange($event)"
