@@ -16,7 +16,6 @@ import { selectType } from './shared/types/select.types';
   styleUrl: './app.scss'
 })
 export class App {
-  protected readonly title = signal('todolist');
   todoService = inject(TodoService)
   todos = signal<ITodo[]>([])
   currentFilter = signal<selectType>('all');
@@ -68,6 +67,12 @@ export class App {
   onTodoUpdated(updatedTodo: ITodo): void {
     this.todos.update(todos => 
       todos.map(todo => todo.id === updatedTodo.id ? updatedTodo : todo)
+    );
+  }
+
+  onTodoDeleted(todoId: number): void {
+    this.todos.update(todos => 
+      todos.filter(todo => todo.id !== todoId) 
     );
   }
 }

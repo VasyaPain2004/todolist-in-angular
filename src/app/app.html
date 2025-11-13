@@ -12,6 +12,10 @@
     ></app-select>
     <app-theme-switch></app-theme-switch>
   </div>
-  <app-todo-list [todos]="filteredTodos()" (todoUpdated)="onTodoUpdated($event)"></app-todo-list>
+  <app-todo-list
+    [todos]="filteredTodos()"
+    (todoUpdated)="onTodoUpdated($event)"
+    (todoDeleted)="onTodoDeleted($event)"
+  ></app-todo-list>
   <app-add-component></app-add-component>
 </div>

@@ -1,7 +1,11 @@
 <ul class="todos-container">
   @for (item of todos(); track item.id) {
   <li class="todo-item">
-    <app-todo-item [todo]="item" (todoUpdated)="onTodoChange($event)"></app-todo-item>
+    <app-todo-item
+      [todo]="item"
+      (todoUpdated)="onTodoChange($event)"
+      (todoDeleted)="onTodoDelete($event)"
+    ></app-todo-item>
   </li>
   } @empty {
   <li class="empty">

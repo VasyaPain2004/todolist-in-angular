@@ -1,6 +1,6 @@
 import { Component, input, output } from '@angular/core';
 import { ITodo } from '../../types/todo.types';
-import { Typography } from "../typography/typography";
+import { Typography } from '../typography/typography';
 
 @Component({
   selector: 'app-todo-item',
@@ -11,13 +11,18 @@ import { Typography } from "../typography/typography";
 export class TodoItem {
   todo = input.required<ITodo>();
   todoUpdated = output<ITodo>();
+  todoDeleted = output<number>();
 
   onToggleCompleted(): void {
     const updatedTodo: ITodo = {
       ...this.todo(),
-      completed: !this.todo().completed
+      completed: !this.todo().completed,
     };
-    
+
     this.todoUpdated.emit(updatedTodo);
+  }
+
+  onDeleteTodo(): void {
+    this.todoDeleted.emit(this.todo().id); 
   }
 }

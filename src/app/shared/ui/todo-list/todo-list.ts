@@ -12,8 +12,13 @@ import { ITodo } from '../../types/todo.types';
 export class TodoList {
   todos = input.required<ITodo[]>()
   todoUpdated = output<ITodo>();
+  todoDeleted = output<number>();
 
   onTodoChange(updatedTodo: ITodo): void {
     this.todoUpdated.emit(updatedTodo);
+  }
+
+  onTodoDelete(todoId: number): void {
+    this.todoDeleted.emit(todoId);
   }
 }
